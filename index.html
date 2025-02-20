@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <title>Clock In/Out</title>
+        <title>Super secret clock in and out app</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -20,12 +20,13 @@
             }
     
             h1 {
-                font-size: 24px;
+                font-size: 20px;
+                color: blueviolet;
             }
     
             button {
                 padding: 15px 20px;
-                font-size: 18px;
+                font-size: 25px;
                 font-weight: bold;
                 cursor: pointer;
                 margin: 15px;
@@ -34,17 +35,22 @@
                 width: 90%;
                 max-width: 300px;
                 transition: background 0.3s ease;
-                background-color: gray;
-                color: white;
+                background-color: rgb(226, 159, 1);
+                color: black;
             }
     
             select {
                 padding: 10px;
                 font-size: 18px;
+                font-weight: bold;
                 border-radius: 5px;
                 margin: 10px;
                 width: 90%;
                 max-width: 300px;
+                text-align: center;
+                text-align-last: center;
+                background-color: black;
+                color: blueviolet;
             }
     
             #status {
@@ -56,8 +62,6 @@
                 width: 90%;
                 max-width: 300px;
                 font-size: 18px;
-                background-color: beige;
-                color: black;
             }
     
             .green-bg { background-color: green; color: white; }
@@ -66,16 +70,16 @@
         </style>
     </head>
     <body>
-        <h1>Clock In/Out</h1>
-        <label for="employee">Select Employee:</label>
+        <p id="status" class="gray-bg">Status: Waiting...</p>
+        <h1>Super secret clock in and out!</h1>
+        <label for="employee">Who's Punchin in?</label>
         <select id="employee">
             <option value="438804" data-key="test">Test Employee</option>
             <option value="497486" data-key="andrew">Andrew De Sha</option>
             <option value="551538" data-key="pasha">Pasha Klopov</option>
         </select>
         <br>
-        <button onclick="sendPunch()">Punch</button>
-        <p id="status" class="gray-bg">Status: Waiting...</p>
+        <button onclick="sendPunch()">Touch me</button>
     
         <script>
             async function sendPunch() {
