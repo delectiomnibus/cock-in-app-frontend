@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Clock In/Out</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding: 20px;
+                background-color: #f8f9fa;
+            }
+    
+            h1 {
+                font-size: 24px;
+            }
+    
+            button {
+                padding: 15px 20px;
+                font-size: 18px;
+                cursor: pointer;
+                margin: 15px;
+                border: none;
+                border-radius: 8px;
+                width: 90%;
+                max-width: 300px;
+                transition: background 0.3s ease;
+            }
+    
+            select {
+                padding: 10px;
+                font-size: 18px;
+                border-radius: 5px;
+                margin: 10px;
+                width: 90%;
+                max-width: 300px;
+            }
+    
+            #status {
+                margin-top: 20px;
+                font-weight: bold;
+                padding: 15px;
+                border-radius: 8px;
+                display: inline-block;
+                width: 90%;
+                max-width: 300px;
+                font-size: 18px;
+            }
+    
+            .green-bg { background-color: green; color: white; }
+            .red-bg { background-color: red; color: white; }
+            .gray-bg { background-color: gray; color: white; }
+        </style>
+    </head>
+    <body>
+        <h1>Clock In/Out</h1>
+        <label for="employee">Select Employee:</label>
+        <select id="employee">
+            <option value="438804" data-key="test">Test Employee</option>
+            <option value="497486" data-key="andrew">Andrew De Sha</option>
+            <option value="551538" data-key="pasha">Pasha Klopov</option>
+        </select>
+        <br>
+        <button onclick="sendPunch()">Punch In/Out</button>
+        <p id="status" class="gray-bg">Status: Waiting...</p>
+    
+        <script>
+            async function sendPunch() {
+                const employeeSelect = document.getElementById("employee");
+                const employeeKey = employeeSelect.options[employeeSelect.selectedIndex].getAttribute("data-key"); 
+                const statusElement = document.getElementById("status");
+    
+                try {
+                    const response = await fetch("https://clock-in-app-hdnd.onrender.com/punch", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ employee: employeeKey }) 
+                    });
+    
+                    const data = await response.json();
+    
+                    if (data.message.includes("in")) {
+                        statusElement.className = "green-bg";
+                    } else if (data.message.includes("out")) {
+                        statusElement.className = "red-bg";
+                    } else {
+                        statusElement.className = "gray-bg";
+                    }
+    
+                    statusElement.innerText = data.message || "Punch successful!";
+                } catch (error) {
+                    console.error("Error punching:", error);
+                    statusElement.className = "gray-bg";
+                    statusElement.innerText = "Error punching in/out.";
+                }
+            }
+        </script>
+    </body>    
+</html>
