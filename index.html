@@ -9,7 +9,14 @@
                 font-family: Arial, sans-serif;
                 text-align: center;
                 padding: 20px;
-                background-color: #f8f9fa;
+                background-color: black;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
             }
     
             h1 {
@@ -19,6 +26,7 @@
             button {
                 padding: 15px 20px;
                 font-size: 18px;
+                font-weight: bold;
                 cursor: pointer;
                 margin: 15px;
                 border: none;
@@ -26,6 +34,8 @@
                 width: 90%;
                 max-width: 300px;
                 transition: background 0.3s ease;
+                background-color: gray;
+                color: white;
             }
     
             select {
@@ -46,6 +56,8 @@
                 width: 90%;
                 max-width: 300px;
                 font-size: 18px;
+                background-color: beige;
+                color: black;
             }
     
             .green-bg { background-color: green; color: white; }
@@ -62,7 +74,7 @@
             <option value="551538" data-key="pasha">Pasha Klopov</option>
         </select>
         <br>
-        <button onclick="sendPunch()">Punch In/Out</button>
+        <button onclick="sendPunch()">Punch</button>
         <p id="status" class="gray-bg">Status: Waiting...</p>
     
         <script>
